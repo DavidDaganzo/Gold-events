@@ -13,9 +13,9 @@ USER routes
 
 | HTTP Method 	| URI path                	| Description            |  JSON     |
 |:-------------:|---------------------------|:----------------------:|:----------:|
-| GET         	| `/my-profile` 	          | See user profile 	     |           |
-| GET         	| `/my-profile/edit`        | Edit user profile      |           |
-| POST         	| `/my-profile/edit`        | Edit user profile      |           |
+| GET         	| `/profile` 	          | See user profile 	     |           |
+| GET         	| `/profile/edit`        | Edit user profile      |           |
+| POST         	| `/profile/edit`        | Edit user profile      |           |
 
 EDITOR routes
 

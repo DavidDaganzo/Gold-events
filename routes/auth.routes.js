@@ -47,7 +47,6 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error))
 })
 
-
 // Logout
 router.post('/logout', (req, res, next) => {
   req.session.destroy(() => res.redirect('/login'))
