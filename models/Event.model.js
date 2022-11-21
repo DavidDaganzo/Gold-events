@@ -30,8 +30,8 @@ const eventSchema = new Schema(
     },
 
     createdBy: {
-      type: String,
-      required: true
+      type: mongoose.Types.ObjectId,
+      ref: 'User',
     },
 
     city: {
