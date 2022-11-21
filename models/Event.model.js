@@ -6,7 +6,7 @@ const eventSchema = new Schema(
       type: String,
       required: true
     },
-    genre: {
+    category: {
       type: String,
       enum: ['Music', 'Sports', 'Arts & Theatre'],
       required: true
@@ -19,7 +19,30 @@ const eventSchema = new Schema(
     eventUrl: {
       type: String,
       required: true
+    },
+    date: {
+      type: Date,
+      required: true
+    },
+    price: {
+      type: String,
+      required: true
+    },
+
+    createdBy: {
+      type: String,
+      required: true
+    },
+
+    city: {
+      type: String,
+      required: true
+    },
+
+    description: {
+      type: String,
     }
+
   },
   {
     timestamps: true

@@ -95,6 +95,7 @@ router.post('/details/:user_id/EDITOR', isLoggedIn, checkRoles('ADMIN'), (req, r
 // Edit my user profile
 
 router.get('/details/:user_id/edit-me', isLoggedIn, (req, res, next) => {
+  console.log('hola soy el user conectado', req.session.currentUser)
 
   const { user_id } = req.params
   if (req.session.currentUser._id === user_id) {
