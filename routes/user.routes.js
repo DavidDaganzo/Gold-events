@@ -1,39 +1,39 @@
 const router = require("express").Router()
-// const User = require("../models/User.model")
-// const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
+const User = require("../models/User.model")
+const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 
 
-// router.get("/", (req, res, next) => {
-//   res.render("index")
-// })
+router.get("/", (req, res, next) => {
+  res.render("index")
+})
 
 
-// // User list
-// router.get('/user-list', (req, res) => {
+// User list
+router.get('/user-list', (req, res) => {
 
-//   User
-//     .find()
-//     .select({ username: 1 })
-//     .then(user => {
-//       res.render('user/user-list', { user })
-//     })
-//     .catch(err => console.log(err))
-// })
+  User
+    .find()
+    .select({ username: 1 })
+    .then(user => {
+      res.render('user/user-list', { user })
+    })
+    .catch(err => console.log(err))
+})
 
-// // User details
-// router.get('/details/:user_id', isLoggedIn, (req, res) => {
-//   const { user_id } = req.params
-//   User
-//     .findById(user_id)
-//     .then(user => {
-//       res.render('user/user-details', {
-//         user,
-//         isPM: req.session.currentUser.role === 'PM',
-//         isTheuser: req.session.currentUser._id === user_id,
-//       })
-//     })
-//     .catch(err => console.log(err))
-// })
+// User details
+router.get('/details/:user_id', isLoggedIn, (req, res) => {
+  const { user_id } = req.params
+  User
+    .findById(user_id)
+    .then(user => {
+      res.render('user/user-details', {
+        user,
+        isADMIN: req.session.currentUser.role === 'ADMIN',
+        iscurrentUser: req.session.currentUser._id === user_id,
+      })
+    })
+    .catch(err => console.log(err))
+})
 
 // // Edit user
 

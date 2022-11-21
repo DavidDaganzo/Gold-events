@@ -3,12 +3,13 @@
   <hr>
   <p>Email: {{user.email}}</p>
   <img src="{{user.profileImg}}" alt="user image">
-  <p>Description: {{user.description}}</p>
+  <p>Rol: {{user.role}}</p>
+
   <hr>
 
   <a href="/user/list" class="btn btn-dark">Volver al listado</a>
 
-  {{#if isPM}}
+  {{#if isADMIN}}
   <a href="/user/details/{{user._id}}/edit" class="btn btn-warning">Editar usuario </a>
   <form action="/user/details/{{user._id}}/delete" method="POST" style="display: inline">
     <input type="submit" value="Eliminar estudiante" class="btn btn-danger">
