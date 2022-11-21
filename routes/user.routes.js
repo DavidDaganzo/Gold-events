@@ -35,48 +35,50 @@ router.get('/details/:user_id', isLoggedIn, (req, res) => {
     .catch(err => console.log(err))
 })
 
-// // Edit user
+// Edit user
 
-// router.get('/details/:user_id/edit', isLoggedIn, checkRoles('PM'), (req, res) => {
+router.get('/details/:user_id/edit', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
-//   const { user_id } = req.params
+  const { user_id } = req.params
 
-//   User
-//     .findById(user_id)
-//     .then(user => {
-//       res.render('user/edit-user', user)
-//     })
-//     .catch(err => console.log(err))
-// })
-
-
-
-// router.post('/details/:user_id/edit', isLoggedIn, checkRoles('PM'), (req, res) => {
-
-//   const { username, email, profileImg, description } = req.body
-//   const { user_id } = req.params
-
-//   console.log(username)
-//   console.log(user_id)
-
-//   User
-//     .findByIdAndUpdate(user_id, { username, email, profileImg, description })
-//     .then(() => res.redirect(`/user/list`))
-//     .catch(err => console.log(err))
-// })
+  User
+    .findById(user_id)
+    .then(user => {
+      res.render('user/user-edit', user)
+    })
+    .catch(err => console.log(err))
+})
 
 
-// // Delete user
-// router.post('/details/:user_id/delete', isLoggedIn, checkRoles('PM'), (req, res) => {
 
-//   const { user_id } = req.params
+router.post('/details/:user_id/edit', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
-//   User
-//     .findByIdAndDelete(user_id)
-//     .then(() => res.redirect('/user/list'))
-//     .catch(err => console.log(err))
+  const { username, email, profileImg } = req.body
+  const { user_id } = req.params
 
-// })
+  console.log(username)
+  console.log(user_id)
+
+  User
+    .findByIdAndUpdate(user_id, { username, email, profileImg })
+    .then(() => res.redirect(`/user-list`))
+    .catch(err => console.log(err))
+})
+
+
+// Delete user
+router.post('/details/:user_id/delete', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+
+  const { user_id } = req.params
+
+  User
+    .findByIdAndDelete(user_id)
+    .then(() => res.redirect('/user-list'))
+    .catch(err => console.log(err))
+
+})
+
+
 // // Upgrade to DEV
 // router.post('/details/:user_id/DEV', isLoggedIn, checkRoles('PM'), (req, res) => {
 
