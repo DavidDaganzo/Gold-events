@@ -79,34 +79,17 @@ router.post('/details/:user_id/delete', isLoggedIn, checkRoles('ADMIN'), (req, r
 })
 
 
-// // Upgrade to DEV
-// router.post('/details/:user_id/DEV', isLoggedIn, checkRoles('PM'), (req, res) => {
+// Upgrade to Editor
+router.post('/details/:user_id/EDITOR', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
-//   const { user_id } = req.params
+  const { user_id } = req.params
 
-//   User
-//     .findByIdAndUpdate(user_id, { role: 'DEV' })
-//     .then(() => res.redirect('/user/list'))
-//     .catch(err => console.log(err))
+  User
+    .findByIdAndUpdate(user_id, { role: 'EDITOR' })
+    .then(() => res.redirect('/user-list'))
+    .catch(err => console.log(err))
 
-// })
-
-// router.post('/details/:user_id/TA', isLoggedIn, checkRoles('PM'), (req, res) => {
-
-//   const { user_id } = req.params
-
-//   User
-//     .findByIdAndUpdate(user_id, { role: 'TA' })
-//     .then(() => res.redirect('/user/list'))
-//     .catch(err => console.log(err))
-
-// })
-
-
-
-
-
-
+})
 
 
 // Edit my user profile
