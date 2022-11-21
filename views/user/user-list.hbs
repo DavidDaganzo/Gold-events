@@ -1,13 +1,12 @@
 <div class="container">
-  <h1>Usuarios</h1>
+  <h1>Lista de usuarios</h1>
   <hr>
 
   {{#each user}}
-  <p>
-    {{username}}
-  </p>
-
-  <a href="details/{{_id}}"> Mas informacion sobre {{username}} </a>
+  <h3>{{username}}</h3>
+  <a href="details/{{_id}}">Más informacion</a>
+  <br>
+  <br>
   {{/each}}
 
   <hr>
