@@ -109,39 +109,39 @@ router.post('/details/:user_id/delete', isLoggedIn, checkRoles('ADMIN'), (req, r
 
 
 
-// // Edit my user profile
+// Edit my user profile
 
-// router.get('/details/:user_id/edit-me', isLoggedIn, (req, res, next) => {
+router.get('/details/:user_id/edit-me', isLoggedIn, (req, res, next) => {
 
-//   const { user_id } = req.params
-//   if (req.session.currentUser._id === user_id) {
-//     User
-//       .findById(user_id)
-//       .then(user => {
-//         res.render('user/edit-me', user)
-//       })
-//       .catch(err => console.log(err))
-//   } else {
-//     res.redirect('/user/list')
-//   }
+  const { user_id } = req.params
+  if (req.session.currentUser._id === user_id) {
+    User
+      .findById(user_id)
+      .then(user => {
+        res.render('user/user-edit-me', user)
+      })
+      .catch(err => console.log(err))
+  } else {
+    res.redirect('/user-list')
+  }
 
-// })
+})
 
 
 
-// router.post('/details/:user_id/edit-me', isLoggedIn, (req, res) => {
+router.post('/details/:user_id/edit-me', isLoggedIn, (req, res) => {
 
-//   const { username, email, profileImg, description } = req.body
-//   const { user_id } = req.params
+  const { username, email, profileImg } = req.body
+  const { user_id } = req.params
 
-//   if (req.session.currentUser._id === user_id) {
-//     User
-//       .findByIdAndUpdate(user_id, { username, email, profileImg, description })
-//       .then(() => res.redirect(`/user/list`))
-//       .catch(err => console.log(err))
-//   } else {
-//     res.redirect('/user/list')
-//   }
+  if (req.session.currentUser._id === user_id) {
+    User
+      .findByIdAndUpdate(user_id, { username, email, profileImg })
+      .then(() => res.redirect(`/user-list`))
+      .catch(err => console.log(err))
+  } else {
+    res.redirect('/user-list')
+  }
 
-// })
+})
 module.exports = router
