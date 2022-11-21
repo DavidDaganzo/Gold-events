@@ -10,10 +10,7 @@ router.get("/events", (req, res, next) => {
     api
         .getAllEvents()
         .then(response => {
-            const valorDePrueba = response.data._embedded.events
-            console.log(valorDePrueba)
-            res.render('events/events-list', { event: valorDePrueba })
-
+            res.render('events/events-list', { event: response.data._embedded.events })
         })
 
 
