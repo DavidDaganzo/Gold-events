@@ -14,7 +14,7 @@ const userSchema = new Schema(
     password: String,
     profileImg: {
       type: String,
-      default: 'https://cdn-icons-png.flaticon.com/512/892/892781.png'
+      default: 'https://www.jesusmaestro.escuelateresiana.com/wp-content/uploads/2015/03/user-default.png'
     },
     role: {
       type: String,

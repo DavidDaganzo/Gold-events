@@ -8,7 +8,11 @@ module.exports = app => {
   const authRouter = require("./auth.routes");
   app.use("/", authRouter);
 
-  // // Users routes
+  // Users routes
   const usersRouter = require("./user.routes");
   app.use("/", usersRouter);
+
+  // Events routes
+  const eventsRouter = require("./event.routes");
+  app.use("/", eventsRouter);
 }
