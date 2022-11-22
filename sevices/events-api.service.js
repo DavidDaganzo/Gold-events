@@ -9,7 +9,7 @@ class ApiService {
 
     //List
     getAllEvents = () => {
-        return this.axiosApp.get(`/events?apikey=${key}&countryCode=ES&classificationName=music`)
+        return this.axiosApp.get(`/events?apikey=${key}&countryCode=ES`)
 
     }
 

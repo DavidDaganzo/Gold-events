@@ -5,7 +5,7 @@ const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 
 //Create
 router.get('/event-create', (req, res, next) => {
-    res.render('our-events/create.event')
+    res.render('our-events/create-event')
 })
 
 router.post("/event-create", (req, res, next) => {

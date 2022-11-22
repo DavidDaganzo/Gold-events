@@ -33,10 +33,10 @@ const eventSchema = new Schema(
       required: true
     },
 
-    createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: 'User',
-    },
+    // createdBy: {
+    //   type: mongoose.Types.ObjectId,
+    //   ref: 'User',
+    // },
 
     city: {
       type: String,

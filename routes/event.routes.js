@@ -14,15 +14,17 @@ router.get("/events", (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-router.get("/events/rock", (req, res, next) => {
+router.get("/events/:genre", (req, res, next) => {
 
     api
         .getAllEvents()
         .then(response => {
-            res.render('events/events-list', {
-                event: response.data._embedded.events,
-                isRock: response.data._embedded.events.classifications[1].name === "Rock",
+            console.log(response.data._embedded.events)
+            const result = response.data._embedded.events.filter(evento => {
+                return evento.classifications[0].genre.name === "Rock"
             })
+            console.log({ result })
+            res.render('events/rock-events', { result })
         })
         .catch(err => console.log(err))
 })
