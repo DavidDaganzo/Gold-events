@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>{{event.eventName}}</h1>
+
+  <hr>
+
+  <img src="{{event.eventImg}}" alt="event img">
+  <p>Url: <a href="{{event.eventUrl}}">{{event.eventUrl}}</a></p>
+  <p>Precio: {{event.price}}</p>
+  <p>Ciudad: {{event.city}}</p>
+  <p>Descripcion: {{event.description}}</p>
+  <hr>
+
+  <a href="/our-events/events-list" class="btn btn-dark">Volver</a>
+
+  {{#if isADMIN}}
+  <a href="/event-details/{{event._id}}/edit" class="btn btn-warning">Editar</a>
+  <form action="/event-details/{{event._id}}/delete/" method="POST" style="display: inline">
+    <input type="submit" value="Eliminar" class="btn btn-danger">
+  </form>
+
+  {{/if}}
+
+  {{#if isEDITOR}}
+  <a href="/event-details/{{event._id}}/edit" class="btn btn-warning">Editar</a>
+  <form action="/event-details/{{event._id}}/delete/" method="POST" style="display: inline">
+    <input type="submit" value="Eliminar" class="btn btn-danger">
+  </form>
+
+  {{/if}}
+
+
+
+</div>

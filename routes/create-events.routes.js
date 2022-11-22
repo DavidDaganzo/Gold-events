@@ -4,7 +4,7 @@ const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 
 
 //Create
-router.get('/event-create', (req, res, next) => {
+router.get('/event-create', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
     res.render('our-events/create-event')
 })
 
@@ -13,7 +13,7 @@ router.post("/event-create", (req, res, next) => {
     const { eventName, category, eventImg, eventUrl, date, price, createdBy, city, description } = req.body
 
     Event
-        .createEvent({ eventName, category, eventImg, eventUrl, date, price, createdBy, city, description })
+        .create({ eventName, category, eventImg, eventUrl, date, price, createdBy, city, description })
         .then(() => res.redirect("/our-events/events-list"))
         .catch(err => console.log(err))
 })
@@ -22,31 +22,59 @@ router.post("/event-create", (req, res, next) => {
 router.get("/our-events/events-list", (req, res, next) => {
 
     Event
-        .getAllEvents()
-        .then(response => res.render('/our-events/events-list', { events: response.data }))
+        .find()
+        .select({ _id: 1, eventName: 1, eventUrl: 1, eventImg: 1 })
+        .then(event => res.render('our-events/events-list', { event }))
         .catch(err => console.log(err))
 
 })
 
-// Edit
-router.get("/our-events/:id/edit", (req, res, next) => {
+// Details
+router.get('/event-details/:event_id', isLoggedIn, (req, res) => {
 
-    const { id: event_id } = req.params
+    const { event_id } = req.params
 
     Event
-        .getOneEvent(event_id)
-        .then(response => res.render("our-events/edit-event", { events: response.data }))
+        .findById(event_id)
+        .then(event => {
+            res.render('our-events/event-details', {
+                event,
+                isADMIN: req.session.currentUser.role === 'ADMIN',
+                isEDITOR: req.session.currentUser.role === 'EDITOR'
+            })
+        })
         .catch(err => console.log(err))
 })
 
 // Edit
-router.post("/our-events/:id/edit", (req, res, next) => {
+router.get("/event-details/:event_id/edit", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
-    const { id: event_id } = req.params
+    const { event_id } = req.params
+
+    Event
+        .findById(event_id)
+        .then(event => res.render("our-events/edit-event", { event }))
+        .catch(err => console.log(err))
+})
+
+router.post("/event-details/:event_id/edit", isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
+
+    const { event_id } = req.params
     const { eventName, category, eventImg, eventUrl, date, price, createdBy, city, description } = req.body
 
     Event
-        .editEvent(event_id, { eventName, category, eventImg, eventUrl, date, price, createdBy, city, description })
+        .findByIdAndUpdate(event_id, { eventName, category, eventImg, eventUrl, date, price, createdBy, city, description })
+        .then(() => res.redirect('/our-events/events-list'))
+        .catch(err => console.log(err))
+})
+
+// Delete 
+router.post('/event-details/:event_id/delete/', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+
+    const { event_id } = req.params
+
+    Event
+        .findByIdAndDelete(event_id)
         .then(() => res.redirect('/our-events/events-list'))
         .catch(err => console.log(err))
 })

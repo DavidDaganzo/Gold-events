@@ -2,20 +2,20 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
 
-      <h1>Crear evento</h1>
+      <h1>Editar evento</h1>
       <hr>
 
-      <form action="/event-create" method="POST">
+      <form action="/event-details/{{event._id}}/edit" method="POST">
 
         <div class="mb-3 row">
           <div class="col">
             <label for="eventName" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="eventName" name="eventName">
+            <input type="text" class="form-control" id="eventName" name="eventName" value="{{event.eventName}}">
           </div>
 
           <div class="col">
             <label for="eventUrl" class="form-label">Enlace</label>
-            <input type="text" class="form-control" id="eventUrl" name="eventUrl">
+            <input type="text" class="form-control" id="eventUrl" name="eventUrl" value="{{event.eventUrl}}">
           </div>
         </div>
 
@@ -32,32 +32,32 @@
 
         <div class="mb-3">
           <label for="eventImg" class="form-label">Imagen</label>
-          <input type="url" class="form-control" id="eventImg" name="eventImg">
+          <input type="url" class="form-control" id="eventImg" name="eventImg" value="{{event.eventImg}}">
         </div>
 
         <div class="mb-3">
           <label for="date" class="form-label">Fecha</label>
-          <input type="date" class="form-control" id="date" name="date">
+          <input type="date" class="form-control" id="date" name="date" value="{{event.date}}">
         </div>
 
         <div class="col">
           <label for="price" class="form-label">Precio</label>
-          <input type="text" class="form-control" id="price" name="price">
+          <input type="text" class="form-control" id="price" name="price" value="{{event.price}}">
         </div>
 
         <div class="col">
           <label for="city" class="form-label">Ciudad</label>
-          <input type="text" class="form-control" id="city" name="city">
+          <input type="text" class="form-control" id="city" name="city" value="{{event.city}}">
         </div>
 
         <div class="col">
           <label for="description" class="form-label">Descripcion</label>
-          <input type="text" class="form-control" id="description" name="description">
+          <input type="text" class="form-control" id="description" name="description" value="{{event.description}}">
         </div>
 
 
         <div class="d-grid gap-2 mt-4">
-          <button type="submit" class="btn btn-dark block">Crear evento</button>
+          <button type="submit" class="btn btn-dark block">Editar evento</button>
         </div>
 
         {{#if errorMessage}}

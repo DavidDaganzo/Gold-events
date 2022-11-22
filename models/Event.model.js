@@ -9,7 +9,7 @@ const eventSchema = new Schema(
 
     category: {
       type: String,
-      enum: ['Music', 'Sports', 'Arts & Theatre'],
+      enum: ['Hip-Hop/Rap', 'Rock', 'Dance/Electronic', 'Pop', 'Other'],
       required: true
     },
 
