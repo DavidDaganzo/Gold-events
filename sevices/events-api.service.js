@@ -1,6 +1,5 @@
 const axios = require('axios')
-
-
+const key = process.env.APIKEY
 class ApiService {
     constructor() {
         this.axiosApp = axios.create({
@@ -10,14 +9,13 @@ class ApiService {
 
     //List
     getAllEvents = () => {
-        return this.axiosApp.get('/events?apikey=NDVfD3G1CGgccK1MAGeBcFPYlL9BGRC3&countryCode=ES&classificationName=music')
+        return this.axiosApp.get(`/events?apikey=${key}&countryCode=ES&classificationName=music`)
 
     }
+
     // getRockEvents = () => {
     //     return this.axiosApp.get('/classifications/genres/KnvZfZ7vAeA?apikey=NDVfD3G1CGgccK1MAGeBcFPYlL9BGRC3&countryCode=ES')
-
     // }
-
 }
 
 module.exports = ApiService

@@ -6,24 +6,28 @@ const eventSchema = new Schema(
       type: String,
       required: true
     },
+
     category: {
       type: String,
       enum: ['Music', 'Sports', 'Arts & Theatre'],
       required: true
     },
+
     eventImg: {
       type: String,
       default: 'https://camarasal.com/wp-content/uploads/2020/08/default-image-5-1.jpg'
-
     },
+
     eventUrl: {
       type: String,
       required: true
     },
+
     date: {
       type: Date,
       required: true
     },
+
     price: {
       type: String,
       required: true
@@ -42,12 +46,10 @@ const eventSchema = new Schema(
     description: {
       type: String,
     }
-
   },
   {
     timestamps: true
   }
 );
-
 
 module.exports = model('Event', eventSchema)

@@ -7,7 +7,6 @@ router.get("/", (req, res, next) => {
   res.render("index")
 })
 
-
 // User list
 router.get('/user-list', (req, res) => {
 
@@ -22,7 +21,9 @@ router.get('/user-list', (req, res) => {
 
 // User details
 router.get('/details/:user_id', isLoggedIn, (req, res) => {
+
   const { user_id } = req.params
+
   User
     .findById(user_id)
     .then(user => {
@@ -36,7 +37,6 @@ router.get('/details/:user_id', isLoggedIn, (req, res) => {
 })
 
 // Edit user
-
 router.get('/details/:user_id/edit', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
   const { user_id } = req.params
@@ -49,22 +49,16 @@ router.get('/details/:user_id/edit', isLoggedIn, checkRoles('ADMIN'), (req, res)
     .catch(err => console.log(err))
 })
 
-
-
 router.post('/details/:user_id/edit', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
 
   const { username, email, profileImg } = req.body
   const { user_id } = req.params
-
-  console.log(username)
-  console.log(user_id)
 
   User
     .findByIdAndUpdate(user_id, { username, email, profileImg })
     .then(() => res.redirect(`/user-list`))
     .catch(err => console.log(err))
 })
-
 
 // Delete user
 router.post('/details/:user_id/delete', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
@@ -75,9 +69,7 @@ router.post('/details/:user_id/delete', isLoggedIn, checkRoles('ADMIN'), (req, r
     .findByIdAndDelete(user_id)
     .then(() => res.redirect('/user-list'))
     .catch(err => console.log(err))
-
 })
-
 
 // Upgrade to Editor
 router.post('/details/:user_id/EDITOR', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
@@ -88,16 +80,13 @@ router.post('/details/:user_id/EDITOR', isLoggedIn, checkRoles('ADMIN'), (req, r
     .findByIdAndUpdate(user_id, { role: 'EDITOR' })
     .then(() => res.redirect('/user-list'))
     .catch(err => console.log(err))
-
 })
 
-
 // Edit my user profile
-
 router.get('/details/:user_id/edit-me', isLoggedIn, (req, res, next) => {
-  console.log('hola soy el user conectado', req.session.currentUser)
 
   const { user_id } = req.params
+
   if (req.session.currentUser._id === user_id) {
     User
       .findById(user_id)
@@ -108,10 +97,7 @@ router.get('/details/:user_id/edit-me', isLoggedIn, (req, res, next) => {
   } else {
     res.redirect('/user-list')
   }
-
 })
-
-
 
 router.post('/details/:user_id/edit-me', isLoggedIn, (req, res) => {
 
@@ -126,6 +112,6 @@ router.post('/details/:user_id/edit-me', isLoggedIn, (req, res) => {
   } else {
     res.redirect('/user-list')
   }
-
 })
+
 module.exports = router

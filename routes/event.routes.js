@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const axios = require("axios");
-
 const ticketmasterApi = require('./../sevices/events-api.service')
 const api = new ticketmasterApi()
 
@@ -12,12 +11,8 @@ router.get("/events", (req, res, next) => {
         .then(response => {
             res.render('events/events-list', { event: response.data._embedded.events })
         })
-
-
         .catch(err => console.log(err))
-
 })
-
 
 router.get("/events/rock", (req, res, next) => {
 
@@ -29,9 +24,7 @@ router.get("/events/rock", (req, res, next) => {
                 isRock: response.data._embedded.events.classifications[1].name === "Rock",
             })
         })
-
-
         .catch(err => console.log(err))
-
 })
+
 module.exports = router;

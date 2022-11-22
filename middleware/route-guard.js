@@ -22,8 +22,6 @@ const checkRoles = (...rolesToCheck) => (req, res, next) => {
   }
 }
 
-
-
 module.exports = {
   isLoggedIn,
   isLoggedOut,
