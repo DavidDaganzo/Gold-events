@@ -18,8 +18,6 @@ router.post('/sign-in', (req, res, next) => {
     .catch(error => next(error))
 })
 
-
-
 // Login
 router.get('/login', (req, res, next) => res.render('auth/login'))
 
