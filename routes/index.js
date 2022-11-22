@@ -17,7 +17,7 @@ module.exports = app => {
   app.use("/", eventsRouter)
 
   // Create Event routes
-  const CreateEventsRouter = require("./create-events.routes")
-  app.use("/", CreateEventsRouter)
+  const createEventsRouter = require("./create-events.routes")
+  app.use("/", createEventsRouter)
 
 }
