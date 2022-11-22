@@ -4,9 +4,13 @@
 
   <hr>
 
-  {{#each XXXXX}}
+  {{#each event}}
+  <img src="{{eventImg}}" alt="">
   <h3>{{eventName}}</h3>
   <a href="{{eventUrl}}">Link</a>
+  <a href="/event-details/{{_id}}">Detalles</a>
+
+
   <br>
   {{/each}}
 
