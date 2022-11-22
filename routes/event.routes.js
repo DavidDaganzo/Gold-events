@@ -18,4 +18,20 @@ router.get("/events", (req, res, next) => {
 
 })
 
+
+router.get("/events/rock", (req, res, next) => {
+
+    api
+        .getAllEvents()
+        .then(response => {
+            res.render('events/events-list', {
+                event: response.data._embedded.events,
+                isRock: response.data._embedded.events.classifications[1].name === "Rock",
+            })
+        })
+
+
+        .catch(err => console.log(err))
+
+})
 module.exports = router;
