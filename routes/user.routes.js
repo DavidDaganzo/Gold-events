@@ -3,8 +3,8 @@ const User = require("../models/User.model")
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 
 
-router.get("/", (req, res, next) => {
-  res.render("index")
+router.get('/', (req, res, next) => {
+  res.render('index')
 })
 
 // User list
