@@ -14,7 +14,8 @@ const eventSchema = new Schema(
     },
 
     eventImg: {
-      type: String
+      type: String,
+      default: 'https://camarasal.com/wp-content/uploads/2020/08/default-image-5-1.jpg'
     },
 
     eventUrl: {
