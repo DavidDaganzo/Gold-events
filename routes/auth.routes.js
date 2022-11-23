@@ -2,24 +2,26 @@ const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const User = require("../models/User.model")
 const saltRounds = 10
+const fileUploader = require('../config/cloudinary.config')
 
 // Signup
-router.get('/sign-in', (req, res, next) => res.render('auth/sign-in'))
+router.get('/registro', (req, res, next) => res.render('auth/sign-in'))
 
-router.post('/sign-in', (req, res, next) => {
+router.post('/registro', fileUploader.single('profileImg'), (req, res, next) => {
 
   const { userPwd } = req.body
+  const { path: profileImg } = req.file
 
   bcrypt
     .genSalt(saltRounds)
     .then(salt => bcrypt.hash(userPwd, salt))
-    .then(hashedPassword => User.create({ ...req.body, password: hashedPassword }))
+    .then(hashedPassword => User.create({ ...req.body, password: hashedPassword, profileImg }))
     .then(() => res.redirect('/'))
-    .catch(error => next(error))
+    .catch(err => next(err))
 })
 
 // Login
-router.get('/login', (req, res, next) => res.render('auth/login'))
+router.get('/iniciar-sesion', (req, res, next) => res.render('auth/login'))
 
 router.post('/login', (req, res, next) => {
 
@@ -39,12 +41,12 @@ router.post('/login', (req, res, next) => {
         res.redirect('/')
       }
     })
-    .catch(error => next(error))
+    .catch(err => next(err))
 })
 
 // Logout
-router.post('/logout', (req, res, next) => {
-  req.session.destroy(() => res.redirect('/login'))
+router.post('/cerrar-sesion', (req, res, next) => {
+  req.session.destroy(() => res.redirect('/iniciar-sesion'))
 })
 
 module.exports = router
