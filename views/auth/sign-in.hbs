@@ -7,7 +7,7 @@
       <h1>Registro</h1>
       <hr>
 
-      <form action="/sign-in" method="POST">
+      <form action="/sign-in" method="POST" enctype="multipart/form-data">
 
         <div class="mb-3 row">
           <div class="col">
@@ -30,8 +30,7 @@
 
         <div class="mb-3">
           <label for="imageInput" class="form-label">Imagen</label>
-          <input type="url" class="form-control" id="imageInput" name="profileImg">
-          <div class="form-text">Introduce la URL a la imagen que desees de perfil.</div>
+          <input type="file" class="form-control" id="imageInput" name="profileImg">
         </div>
 
         <div class="d-grid gap-2">
