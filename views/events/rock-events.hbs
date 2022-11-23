@@ -2,10 +2,19 @@
     <h1>Eventos</h1>
     <hr>
 
-    {{#each result}}
+    {{#each apiEvents}}
     <h3>{{name}}</h3>
-    <a href="{{url}}">Link</a>
+    <img src="{{images.[0].url}}" alt="imagen">
+    <p><a href="{{url}}">Link</a></p>
     {{/each}}
+    {{#each ownEvents}}
+    <h3>{{eventName}}</h3>
+    <img src="{{eventImg}}" alt="imagen">
+    <p><a href="{{eventUrl}}">Link</a></p>
+    {{/each}}
+
+
+
     <hr>
 
     <a href="/" class="btn btn-dark">Volver a inicio</a>

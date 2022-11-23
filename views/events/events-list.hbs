@@ -1,12 +1,16 @@
 <div class="container">
     <h1>Eventos</h1>
     <hr>
+    <div class="row">
 
-    {{#each event}}
-    <h3>{{name}}</h3>
-    <a href="{{url}}">Link</a>
-    {{/each}}
-    <hr>
-
+        {{#each event}}
+        <div class="col-6">
+            <h3>{{name}}</h3>
+            <img src="{{images.[0].url}}" alt="imagen">
+            <p><a href="{{url}}">Link</a></p>
+        </div>
+        {{/each}}
+        <hr>
+    </div>
     <a href="/" class="btn btn-dark">Volver a inicio</a>
 </div>
