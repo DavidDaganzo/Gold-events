@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const Event = require('../models/Event.model')
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
+const fileUploader = require('../config/cloudinary.config')
+
 
 
 //Create
@@ -8,12 +10,12 @@ router.get('/event-create', isLoggedIn, checkRoles('ADMIN'), (req, res, next) =>
     res.render('our-events/create-event')
 })
 
-router.post("/event-create", (req, res, next) => {
+router.post("/event-create", fileUploader.single('eventImg'), isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
-    const { eventName, category, eventImg, eventUrl, date, price, createdBy, city, description } = req.body
+    const { eventName, category, eventUrl, date, price, createdBy, city, description } = req.body
 
     Event
-        .create({ eventName, category, eventImg, eventUrl, date, price, createdBy, city, description })
+        .create({ eventName, category, eventImg: req.file.path, eventUrl, date, price, createdBy, city, description })
         .then(() => res.redirect("/our-events/events-list"))
         .catch(err => console.log(err))
 })
@@ -78,11 +80,6 @@ router.post('/event-details/:event_id/delete/', isLoggedIn, checkRoles('ADMIN'),
         .then(() => res.redirect('/our-events/events-list'))
         .catch(err => console.log(err))
 })
-
-
-
-
-
 
 module.exports = router
 
