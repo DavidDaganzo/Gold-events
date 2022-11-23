@@ -13,16 +13,16 @@
   <a href="/our-events/events-list" class="btn btn-dark">Volver</a>
 
   {{#if isADMIN}}
-  <a href="/event-details/{{event._id}}/edit" class="btn btn-warning">Editar</a>
-  <form action="/event-details/{{event._id}}/delete/" method="POST" style="display: inline">
+  <a href="/detalles-evento/{{event._id}}/editar" class="btn btn-warning">Editar</a>
+  <form action="/detalles-evento/{{event._id}}/eliminar/" method="POST" style="display: inline">
     <input type="submit" value="Eliminar" class="btn btn-danger">
   </form>
 
   {{/if}}
 
   {{#if isEDITOR}}
-  <a href="/event-details/{{event._id}}/edit" class="btn btn-warning">Editar</a>
-  <form action="/event-details/{{event._id}}/delete/" method="POST" style="display: inline">
+  <a href="/detalles-evento/{{event._id}}/editar" class="btn btn-warning">Editar</a>
+  <form action="/detalles-evento/{{event._id}}/eliminar/" method="POST" style="display: inline">
     <input type="submit" value="Eliminar" class="btn btn-danger">
   </form>
 

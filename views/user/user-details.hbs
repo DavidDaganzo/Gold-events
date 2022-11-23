@@ -9,21 +9,21 @@
 
   <hr>
 
-  <a href="/user/list" class="btn btn-dark">Volver al listado</a>
+  <a href="/lista-usuarios" class="btn btn-dark">Volver al listado</a>
 
   {{#if isADMIN}}
-  <a href="/details/{{user._id}}/edit" class="btn btn-warning">Editar usuario </a>
-  <form action="/details/{{user._id}}/delete" method="POST" style="display: inline">
+  <a href="/detalles/{{user._id}}/editar" class="btn btn-warning">Editar usuario </a>
+  <form action="/detalles/{{user._id}}/eliminar" method="POST" style="display: inline">
     <input type="submit" value="Eliminar usuario" class="btn btn-danger">
   </form>
 
-  <form action="/details/{{user._id}}/EDITOR" method="POST" style="display: inline">
+  <form action="/detalles/{{user._id}}/mejorar/EDITOR" method="POST" style="display: inline">
     <input type="submit" value="Cambiar rol a Editor" class="btn btn-primary">
   </form>
   {{/if}}
 
   {{#if iscurrentUser}}
-  <a href="/details/{{user._id}}/edit-me" class="btn btn-warning">Editar tus datos</a>
+  <a href="/detalles/{{user._id}}/auto-edicion" class="btn btn-warning">Editar tus datos</a>
   {{/if}}
 
 
