@@ -3,8 +3,6 @@ const Event = require('../models/Event.model')
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 const fileUploader = require('../config/cloudinary.config')
 
-
-
 //Create
 router.get('/event-create', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
     res.render('our-events/create-event')
