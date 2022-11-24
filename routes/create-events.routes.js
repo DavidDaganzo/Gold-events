@@ -10,8 +10,10 @@ router.get('/crear-evento', isLoggedIn, checkRoles('ADMIN'), (req, res, next) =>
 
 router.post("/crear-evento", isLoggedIn, checkRoles('ADMIN'), fileUploader.single('eventImg'), (req, res, next) => {
 
-    const { eventName, category, eventUrl, date, price, createdBy, city, description } = req.body
+    const { eventName, category, eventUrl, date, price, city, description } = req.body
     const { path: eventImg } = req.file
+    const createdBy = req.session.currentUser._id
+
 
     Event
         .create({ eventName, category, eventImg, eventUrl, date, price, createdBy, city, description })
@@ -36,6 +38,7 @@ router.get('/detalles-evento/:event_id', isLoggedIn, (req, res) => {
 
     Event
         .findById(event_id)
+        .populate('createdBy')
         .then(event => {
             res.render('our-events/event-details', {
                 event,
