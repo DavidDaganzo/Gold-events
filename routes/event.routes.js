@@ -29,24 +29,18 @@ router.get("/:genre", (req, res, next) => {
 
     let apiEvents = undefined
     let ownEvents = undefined
+    const promises = [api.getAllEvents(), Event.find()]
 
-    api
-        .getAllEvents()
+    Promise
+        .all(promises)
         .then(response => {
-            const result = response.data._embedded.events.filter(event => {
+            apiEvents = response[0].data._embedded.events.filter(event => {
                 return event.classifications[0].genre.name === genre
             })
-            apiEvents = result
-
-            Event
-                .find()
-                .select({ eventName: 1, eventUrl: 1, eventImg: 1 })
-                .then(events => {
-                    ownEvents = events
-                    res.render('events/rock-events', { ownEvents, apiEvents })
-                })
-                .catch(err => next(err))
-
+            ownEvents = response[1].filter(ownEvent => {
+                return ownEvent.category === genre
+            })
+            res.render('events/genre-events', { ownEvents, apiEvents })
         })
         .catch(err => next(err))
 })
@@ -57,33 +51,20 @@ router.get("/:genre/:subgenre", (req, res, next) => {
 
     let apiEvents = undefined
     let ownEvents = undefined
+    const promises = [api.getAllEvents(), Event.find()]
 
-    api
-        .getAllEvents()
+    Promise
+        .all(promises)
         .then(response => {
-            const result = response.data._embedded.events.filter(event => {
+            apiEvents = response[0].data._embedded.events.filter(event => {
                 return event.classifications[0].genre.name === `${genre}/${subgenre}`
             })
-            apiEvents = result
-
-            Event
-                .find()
-                .select({ eventName: 1, eventUrl: 1, eventImg: 1 })
-                .then(events => {
-                    ownEvents = events
-                    res.render('events/rock-events', { ownEvents, apiEvents })
-                })
-                .catch(err => next(err))
-
+            ownEvents = response[1].filter(ownEvent => {
+                return ownEvent.category === `${genre}/${subgenre}`
+            })
+            res.render('events/genre-events', { ownEvents, apiEvents })
         })
         .catch(err => next(err))
-
-
 })
-
-
-
-
-
 
 module.exports = router;
