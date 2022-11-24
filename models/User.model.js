@@ -27,7 +27,12 @@ const userSchema = new Schema(
       type: String,
       enum: ['USER', 'EDITOR', 'ADMIN'],
       default: 'USER'
-    }
+    },
+
+    favourites: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Event',
+    }],
   },
 
   {

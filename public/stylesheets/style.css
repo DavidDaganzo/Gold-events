@@ -1,6 +1,6 @@
 body {
   font-weight: 200;
-  font-family: sans-serif;
+  font-family: sans-serif
 }
 
 img {
@@ -33,7 +33,6 @@ h3 {
   animation: showFromBottom 6s forwards;
 }
 
-
 @keyframes showFromBottom {
   0% {
     bottom: -50px
@@ -41,7 +40,6 @@ h3 {
 
   10% {
     bottom: 10px;
-
   }
 
   90% {

@@ -4,11 +4,11 @@ const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 const fileUploader = require('../config/cloudinary.config')
 
 //Create
-router.get('/crear-evento', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
+router.get('/crear-evento', isLoggedIn, checkRoles('ADMIN', 'EDITOR'), (req, res, next) => {
     res.render('our-events/create-event')
 })
 
-router.post("/crear-evento", isLoggedIn, checkRoles('ADMIN'), fileUploader.single('eventImg'), (req, res, next) => {
+router.post("/crear-evento", isLoggedIn, checkRoles('ADMIN', 'EDITOR'), fileUploader.single('eventImg'), (req, res, next) => {
 
     const { eventName, category, eventUrl, date, price, city, description } = req.body
     const { path: eventImg } = req.file

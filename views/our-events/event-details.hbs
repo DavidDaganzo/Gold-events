@@ -11,6 +11,9 @@
 
 
   <p>Creado por: {{event.createdBy.username}}</p>
+  <form action="/detalles/{{event._id}}/favoritos" method="POST" style="display: inline">
+    <input type="submit" value="Añadir a favoritos" class="btn btn-danger">
+  </form>
 
   <hr>
 

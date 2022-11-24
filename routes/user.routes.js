@@ -1,10 +1,11 @@
 const router = require("express").Router()
 const User = require("../models/User.model")
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
+const Event = require('../models/Event.model')
 
 
 // User list
-router.get('/lista-usuarios', (req, res) => {
+router.get('/lista-usuarios', (req, res, next) => {
 
   User
     .find()
@@ -16,12 +17,13 @@ router.get('/lista-usuarios', (req, res) => {
 })
 
 // User details
-router.get('/detalles/:user_id', isLoggedIn, (req, res) => {
+router.get('/detalles/:user_id', isLoggedIn, (req, res, next) => {
 
   const { user_id } = req.params
 
   User
     .findById(user_id)
+    .populate('favourites')
     .then(user => {
       res.render('user/user-details', {
         user,
@@ -33,7 +35,7 @@ router.get('/detalles/:user_id', isLoggedIn, (req, res) => {
 })
 
 // Edit user
-router.get('/detalles/:user_id/editar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+router.get('/detalles/:user_id/editar', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
   const { user_id } = req.params
 
@@ -45,7 +47,7 @@ router.get('/detalles/:user_id/editar', isLoggedIn, checkRoles('ADMIN'), (req, r
     .catch(err => next(err))
 })
 
-router.post('/detalles/:user_id/editar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+router.post('/detalles/:user_id/editar', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
   const { username, email, profileImg } = req.body
   const { user_id } = req.params
@@ -57,7 +59,7 @@ router.post('/detalles/:user_id/editar', isLoggedIn, checkRoles('ADMIN'), (req, 
 })
 
 // Delete user
-router.post('/detalles/:user_id/eliminar', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+router.post('/detalles/:user_id/eliminar', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
   const { user_id } = req.params
 
@@ -68,11 +70,11 @@ router.post('/detalles/:user_id/eliminar', isLoggedIn, checkRoles('ADMIN'), (req
 })
 
 // Upgrade to Editor
-router.post('/detalles/:user_id/mejorar/:role', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
+router.post('/detalles/:user_id/mejorar/:role', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
   const { user_id, role } = req.params
 
-  // role === 'ADMIN' && next()
+  role === 'ADMIN' && next()
 
   User
     .findByIdAndUpdate(user_id, { role })
@@ -97,7 +99,7 @@ router.get('/detalles/:user_id/auto-edicion', isLoggedIn, (req, res, next) => {
   }
 })
 
-router.post('/detalles/:user_id/auto-edicion', isLoggedIn, (req, res) => {
+router.post('/detalles/:user_id/auto-edicion', isLoggedIn, (req, res, next) => {
 
   const { username, email, profileImg } = req.body
   const { user_id } = req.params
@@ -110,6 +112,18 @@ router.post('/detalles/:user_id/auto-edicion', isLoggedIn, (req, res) => {
   } else {
     res.redirect('/lista-usuarios')
   }
+})
+
+router.post("/detalles/:event_id/favoritos", isLoggedIn, (req, res, next) => {
+
+  const { event_id } = req.params
+  const userId = req.session.currentUser._id
+  User
+    .findByIdAndUpdate(req.session.currentUser._id, { $addToSet: { favourites: event_id } })
+    .then(() => {
+      res.redirect(`/detalles/${userId}`)
+    })
+    .catch(err => next(err))
 })
 
 module.exports = router

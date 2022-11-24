@@ -3,11 +3,12 @@
 
   <hr>
 
-  <p>Email: {{user.email}}</p>
+
   <img src="{{user.profileImg}}" alt="user image">
+  <p>Email: {{user.email}}</p>
   <p>Rol: {{user.role}}</p>
 
-  <hr>
+
 
   <a href="/lista-usuarios" class="btn btn-dark">Volver al listado</a>
 
@@ -25,6 +26,13 @@
   {{#if iscurrentUser}}
   <a href="/detalles/{{user._id}}/auto-edicion" class="btn btn-warning">Editar tus datos</a>
   {{/if}}
-
-
+  <hr>
+  <ul>
+    <h1>Tus eventos</h1>
+    <hr>
+    {{#each user.favourites}}
+    <li>{{eventName}}</li>
+    <img src="{{eventImg}}" alt="evento">
+    {{/each}}
+  </ul>
 </div>

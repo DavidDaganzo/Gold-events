@@ -30,21 +30,29 @@
                      Mi cuenta
                   </a>
                   <ul class="dropdown-menu">
+                     {{#unless isOnline}}
                      <li><a class="dropdown-item" href="/iniciar-sesion">Iniciar sesión</a></li>
+                     {{/unless}}
+                     {{#if isOnline}}
                      <li>
                         <form action="/cerrar-sesion" method="POST">
                            <button class="dropdown-item">Logout</button>
                         </form>
                      </li>
+                     {{/if}}
                      <li>
-                        <hr class="dropdown-divider">
+
                      </li>
+                     {{#unless isOnline}}
                      <li><a class="dropdown-item" href="/registro">Registrarse</a></li>
+                     {{/unless}}
+
                   </ul>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="/lista-usuarios">Lista Usuarios</a>
                </li>
+
 
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -73,11 +81,11 @@
                   </ul>
                </li>
 
-
+               {{#if canCreate}}
                <li class="nav-item">
                   <a class="nav-link" href="/crear-evento">Crear</a>
                </li>
-
+               {{/if}}
             </ul>
          </div>
       </div>
