@@ -1,21 +1,35 @@
-<div class="container">
-    <h1>Eventos</h1>
+<div class="container mt-5">
+    <h1>Eventos de {{ownEvents.[0].category}}</h1>
     <hr>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
 
-    {{#each apiEvents}}
-    <h3>{{name}}</h3>
-    <img src="{{images.[0].url}}" alt="imagen">
-    <p><a href="{{url}}">Link</a></p>
-    {{/each}}
-    {{#each ownEvents}}
-    <h3>{{eventName}}</h3>
-    <img src="{{eventImg}}" alt="imagen">
-    <p><a href="{{eventUrl}}">Link</a></p>
-    {{/each}}
+        {{#each ownEvents}}
 
+        <div class="col">
+            <div class="card">
+                <img src="{{eventImg}}" class="card-img-top" alt="event img">
+                <div class="card-body">
+                    <h5 class="card-title">{{eventName}}</h5>
+                    <p class="card-text">{{description}}</p>
+                    <a class="btn btn-dark" href="{{eventUrl}}">Link</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
 
+        {{#each apiEvents}}
+        <div class="col">
+            <div class="card">
+                <img src="{{images.[0].url}}" class="card-img-top" alt="event img">
+                <div class="card-body">
+                    <h3 class="card-title">{{name}}</h3>
+                    <p class="card-text">{{_embedded.venues.[0].name}}</p>
+                    <a class="btn btn-dark" href="{{url}}">Link</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
 
-    <hr>
-
-    <a href="/" class="btn btn-dark">Volver a inicio</a>
+    </div>
+    <a href="/" class="btn btn-dark mt-5 mb-5">Volver a inicio</a>
 </div>

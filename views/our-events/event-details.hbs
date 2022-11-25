@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <h1>{{event.eventName}}</h1>
 
   <hr>
@@ -17,18 +17,18 @@
 
   <hr>
 
-  <a href="/our-events/events-list" class="btn btn-dark">Volver</a>
+  <a href="/our-events/events-list" class="btn btn-dark mb-5">Volver</a>
 
   {{#if isADMIN}}
-  <a href="/detalles-evento/{{event._id}}/editar" class="btn btn-warning">Editar</a>
+  <a href="/detalles-evento/{{event._id}}/editar" class="btn btn-warning mb-5">Editar</a>
   <form action="/detalles-evento/{{event._id}}/eliminar/" method="POST" style="display: inline">
-    <input type="submit" value="Eliminar" class="btn btn-danger">
+    <input type="submit" value="Eliminar" class="btn btn-danger mb-5">
   </form>
 
   {{/if}}
 
   {{#if isEDITOR}}
-  <a href="/detalles-evento/{{event._id}}/editar" class="btn btn-warning">Editar</a>
+  <a href="/detalles-evento/{{event._id}}/editar" class="btn btn-warning mb-5">Editar</a>
   <form action="/detalles-evento/{{event._id}}/eliminar/" method="POST" style="display: inline">
     <input type="submit" value="Eliminar" class="btn btn-danger">
   </form>

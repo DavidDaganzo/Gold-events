@@ -1,20 +1,28 @@
-<div class="container">
+<div class="container mt-5">
 
-  <h1>Lista de nuestros eventos</h1>
-
-  <hr>
-
-  {{#each events}}
-  <h3>{{eventName}}</h3>
-  <img src="{{eventImg}}" alt="imagen del evento">
-  <a href="{{eventUrl}}">Link</a>
-  <a href="/detalles-evento/{{_id}}">Detalles</a>
-
-
-  <br>
-  {{/each}}
+  <h1>Nuestros eventos</h1>
 
   <hr>
 
-  <a href="/" class="btn btn-dark">Volver a inicio</a>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {{#each events}}
+
+    <div class="col">
+      <div class="card">
+        <img src="{{eventImg}}" class="card-img-top" alt="event img">
+        <div class="card-body">
+          <h3 class="card-title">{{eventName}}</h3>
+          <p class="card-text">{{description}}</p>
+          <a class="btn btn-dark" href="{{eventUrl}}">Link</a>
+          <a href="/detalles-evento/{{_id}}">Detalles</a>
+        </div>
+      </div>
+    </div>
+
+    {{/each}}
+  </div>
+  <hr>
+  <a href="/" class="btn btn-dark mb-5">Volver a inicio</a>
 </div>

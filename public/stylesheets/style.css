@@ -1,11 +1,11 @@
 body {
-  font-weight: 200;
-  font-family: sans-serif
+  font-family: 'Roboto', sans-serif;
 }
 
 img {
-  width: 100%;
+  width: 30%;
 }
+
 
 h1,
 h2,
@@ -14,13 +14,9 @@ h3 {
 }
 
 .navbar {
-  margin-bottom: 80px;
+  margin-bottom: 0px;
 }
 
-.navbar form button {
-  background: transparent;
-  border: none;
-}
 
 #errorMessage {
   background-color: rgb(255, 202, 202);
@@ -51,7 +47,44 @@ h3 {
   }
 }
 
+.footer-links {
+  background: #2f3640;
+  color: #616161;
+  font-size: 12px;
+  padding: 35px 0;
+}
 
-img {
-  width: 30%;
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.footer-container ul {
+  margin: 0 auto;
+}
+
+.footer-links li {
+  line-height: 2.8;
+}
+
+.footer {
+  background: #2f3640;
+  color: #616161;
+  font-size: 12px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1rem;
+  padding-bottom: 20px;
+}
+
+.aColors {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }

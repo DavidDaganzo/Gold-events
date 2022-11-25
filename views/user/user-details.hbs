@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <h1>Detalles de {{user.username}}</h1>
 
   <hr>
@@ -28,11 +28,11 @@
   {{/if}}
   <hr>
   <ul>
-    <h1>Tus eventos</h1>
-    <hr>
+    <h1 class="mt-5 mb-5">Tus favoritos</h1>
+
     {{#each user.favourites}}
     <li>{{eventName}}</li>
-    <img src="{{eventImg}}" alt="evento">
+    <img class="mb-5" src="{{eventImg}}" alt="evento">
     {{/each}}
   </ul>
 </div>

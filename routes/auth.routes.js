@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
 })
 
 // Logout
-router.post('/cerrar-sesion', (req, res, next) => {
+router.get('/cerrar-sesion', (req, res, next) => {
   req.session.destroy(() => res.redirect('/iniciar-sesion'))
 })
 

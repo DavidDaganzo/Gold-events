@@ -1,17 +1,28 @@
-<div class="container">
+<div class="container mt-5 mb-5">
 
   <h1>Lista de usuarios</h1>
 
   <hr>
+  <div class="row">
+    {{#each user}}
 
-  {{#each user}}
-  <h3>{{username}}</h3>
-  <a href="detalles/{{_id}}">Más informacion</a>
-  <br>
-  <br>
-  {{/each}}
+    <div class="card col-md-3 movie-card mb-3" style="width: 18rem;">
 
-  <hr>
+      <div class="card-body">
+        <h5 class="card-title text-center">{{username}}</h5>
 
-  <a href="/" class="btn btn-dark">Volver a inicio</a>
+        <a href="detalles/{{_id}}" class="btn btn-dark">Detalles</a>
+      </div>
+    </div>
+
+
+
+
+    <br>
+    {{/each}}
+  </div>
+
+  <hr class="mb-5">
+
+  <a href="/" class="btn btn-dark mt-5 mn-5">Volver a inicio</a>
 </div>
