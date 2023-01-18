@@ -1,19 +1,22 @@
 <div class="container mt-5 mb-5">
 
-  <h1>Lista de usuarios</h1>
+  <h1 class="text-center mt-5">Lista de usuarios</h1>
 
   <hr>
   <div class="row">
     {{#each user}}
 
-    <div class="card col-md-3 movie-card mb-3" style="width: 18rem;">
+    <div class="col-md-3 movie-card mb-3 mt-3" style="width: 20rem;">
+      <div class="card">
 
-      <div class="card-body">
-        <h5 class="card-title text-center">{{username}}</h5>
+        <div class="card-body text-center">
+          <h2 class="card-title">{{username}}</h5>
 
-        <a href="detalles/{{_id}}" class="btn btn-dark">Detalles</a>
+            <a href="detalles/{{_id}}" class="btn btn-dark mt-3">Detalles</a>
+        </div>
       </div>
     </div>
+
 
 
 
@@ -22,7 +25,7 @@
     {{/each}}
   </div>
 
-  <hr class="mb-5">
+  <hr class="mb-5 mt-5">
 
   <a href="/" class="btn btn-dark mt-5 mn-5">Volver a inicio</a>
 </div>

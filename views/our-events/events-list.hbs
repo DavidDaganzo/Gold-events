@@ -1,6 +1,6 @@
 <div class="container mt-5">
 
-  <h1>Nuestros eventos</h1>
+  <h1 class="text-center">Nuestros eventos</h1>
 
   <hr>
 
@@ -10,13 +10,14 @@
     {{#each events}}
 
     <div class="col">
-      <div class="card">
+      <div class="card text-center">
         <img src="{{eventImg}}" class="card-img-top" alt="event img">
         <div class="card-body">
           <h3 class="card-title">{{eventName}}</h3>
           <p class="card-text">{{description}}</p>
-          <a class="btn btn-dark" href="{{eventUrl}}">Link</a>
-          <a class="btn btn-dark" href="/detalles-evento/{{_id}}">Detalles</a>
+
+          <a class="btn btn-dark d-grid" href="{{eventUrl}}">Link</a>
+          <a class="btn btn-dark d-grid mt-2" href="/detalles-evento/{{_id}}">Detalles</a>
         </div>
       </div>
     </div>

@@ -1,38 +1,61 @@
 <div class="container mt-5">
   <h1>Detalles de {{user.username}}</h1>
-
   <hr>
 
+  <div class="row mb-5">
+    <div class=" col-lg-5">
+      <img class="imgUser" src="{{user.profileImg}}" alt="user image">
+    </div>
+    <div class=" col-lg-7">
+      <h2>Email:</h2>
+      <p class="DetailsText">{{user.email}}</p>
+      <hr>
+      <h2>Rol:</h2>
+      <p class="DetailsText">{{user.role}}</p>
+    </div>
+  </div>
 
-  <img src="{{user.profileImg}}" alt="user image">
+  {{!-- <img class="imgUser" src="{{user.profileImg}}" alt="user image">
   <p>Email: {{user.email}}</p>
-  <p>Rol: {{user.role}}</p>
+  <p>Rol: {{user.role}}</p> --}}
 
 
 
   <a href="/lista-usuarios" class="btn btn-dark">Volver al listado</a>
 
   {{#if isADMIN}}
-  <a href="/detalles/{{user._id}}/editar" class="btn btn-warning">Editar usuario </a>
-  <form action="/detalles/{{user._id}}/eliminar" method="POST" style="display: inline">
-    <input type="submit" value="Eliminar usuario" class="btn btn-danger">
-  </form>
-
+  <a href="/detalles/{{user._id}}/editar" class="btn btn-dark">Editar usuario </a>
+  {{#if isADMIN}}
   <form action="/detalles/{{user._id}}/mejorar/EDITOR" method="POST" style="display: inline">
-    <input type="submit" value="Cambiar rol a Editor" class="btn btn-primary">
+    <input type="submit" value="Cambiar rol a Editor" class="btn btn-dark">
+  </form>
+  {{/if}}
+  <form action="/detalles/{{user._id}}/eliminar" method="POST" style="display: inline">
+    <input type="submit" value="Eliminar usuario" class="btn btn-dark">
   </form>
   {{/if}}
 
   {{#if iscurrentUser}}
-  <a href="/detalles/{{user._id}}/auto-edicion" class="btn btn-warning">Editar tus datos</a>
+  <a href="/detalles/{{user._id}}/auto-edicion" class="btn btn-dark">Editar tus datos</a>
   {{/if}}
   <hr>
-  <ul>
-    <h1 class="mt-5 mb-5">Tus favoritos</h1>
+  <div class="container">
+    <div class="row">
 
-    {{#each user.favourites}}
-    <li>{{eventName}}</li>
-    <img class="mb-5" src="{{eventImg}}" alt="evento">
-    {{/each}}
-  </ul>
+
+      <h1 class="mt-5 mb-5 text-center">Tus favoritos</h1>
+      <hr>
+
+      {{#each user.favourites}}
+
+      <div class="text-center col-md-6 col-lg-6">
+        <h3>{{eventName}}</h3>
+        <br>
+        <img class="mb-3 " src="{{eventImg}}" alt="evento">
+      </div>
+      {{/each}}
+
+
+    </div>
+  </div>
 </div>
